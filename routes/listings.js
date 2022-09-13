@@ -14,7 +14,7 @@ const config = require("config");
 
 const upload = multer({
   dest: "uploads/",
-  limits: { fieldSize: 25 * 1024 * 1024 },
+  // limits: { fieldSize: 25 * 1024 * 1024 },
 });
 
 const schema = {
@@ -65,7 +65,8 @@ router.post(
       categoryId: parseInt(req.body.categoryId),
       description: req.body.description,
     };
-    listing.images = req.images.map((fileName) => ({ fileName: fileName }));
+    console.log(listing)
+    listing.images = req.images.map((fileName) => ({ fileName: fileName }, console.log(fileName)));
     if (req.body.location) listing.location = JSON.parse(req.body.location);
     if (req.user) listing.userId = req.user.userId;
 

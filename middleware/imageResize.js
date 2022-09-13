@@ -6,8 +6,9 @@ const outputFolder = "public/assets";
 
 module.exports = async (req, res, next) => {
   const images = [];
-
+  console.log(req.files)
   const resizePromises = req.files.map(async (file) => {
+    console.log(file, 'here')
     await sharp(file.path)
       .resize(2000)
       .jpeg({ quality: 50 })
